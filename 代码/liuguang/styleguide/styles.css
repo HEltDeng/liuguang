@@ -376,3 +376,16 @@ main {
     width: 100%;
   }
 }
+
+.states,
+.spec p {
+  max-width: 720px;
+}
+.states dt {
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 16px;
+}
+.states dd {
+  margin: 4px 0 0;
+}
