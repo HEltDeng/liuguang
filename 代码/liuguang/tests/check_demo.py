@@ -1,10 +1,10 @@
-"""uv run --with playwright python 代码/landing-club/tests/check_demo.py"""
+"""uv run --with playwright python 代码/liuguang/tests/check_demo.py"""
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 root=Path(__file__).resolve().parents[3]
-demo=root/'交付成品'/'岸友-伦敦站-Demo.html'
+demo=root/'交付成品'/'留光-伦敦站-Demo.html'
 shots=root/'图片素材'/'演示截图'
 shots.mkdir(parents=True, exist_ok=True)
 chrome=Path('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')

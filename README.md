@@ -1,10 +1,10 @@
-# 岸友 · Landing Club
+# 留光——AI 驱动的全球留学成长社区
 
-面向初到伦敦的留学生，把一个具体问题连到有出处的资料和愿意分享经历的校友。当前是企业命题「AI 全球留学成长社区」的内部探索原型，非校方或企业官方产品。先验证首周通勤、学习空间、社团交友三个场景。
+留光面向准留学生、海外在读学生与校友，围绕同校同专业伙伴连接、真实经验共建、人与资源匹配展开。项目已选新东方国际教育企业命题。伦敦新生是当前 Demo 的示例场景。详见[原报名文案](文档/留光报名文案.md)。
 
 ## 两分钟演示
 
-下载 [内部演示包](https://github.com/HEltDeng/landing-club/releases/tag/v0.1.0)，解压后用 Chrome 或 Safari 打开 HTML。无需安装、注册或配置 API 密钥。需要仓库访问权才能下载。演示本身可离线，查看原始资料需要联网。
+下载 [内部演示包](https://github.com/HEltDeng/liuguang/releases/tag/v0.1.1)，解压后用 Chrome 或 Safari 打开 HTML。无需安装、注册或配置 API 密钥。需要仓库访问权才能下载。演示本身可离线，查看原始资料需要联网。
 
 1. 点「找自习空间」，查看匹配依据、演示校友和原始来源。
 2. 向校友提问，创建昵称名片并保存求助。进入互助记录，切换演示校友视角，手动回复，再以新生身份反馈。
@@ -16,10 +16,10 @@
 在仓库根目录执行：
 
 ```sh
-python3 -m http.server 8764 --bind 127.0.0.1 --directory '代码/landing-club'
+python3 -m http.server 8764 --bind 127.0.0.1 --directory '代码/liuguang'
 ```
 
-访问 http://127.0.0.1:8764 。要生成便携版，运行 `python3 代码/landing-club/build.py`。网页无第三方运行时依赖。交付件由源文件生成，避免两份 UI 漂移。
+访问 http://127.0.0.1:8764 。要生成便携版，运行 `python3 代码/liuguang/build.py`。网页无第三方运行时依赖。交付件由源文件生成，避免两份 UI 漂移。
 
 ## 行为与验证
 
@@ -28,7 +28,7 @@ python3 -m http.server 8764 --bind 127.0.0.1 --directory '代码/landing-club'
 使用 Python、uv、Playwright 及 Chrome，先生成便携版再运行：
 
 ```sh
-uv run --with playwright python 代码/landing-club/tests/check_demo.py
+uv run --with playwright python 代码/liuguang/tests/check_demo.py
 ```
 
 非 macOS 可用 `CHROME_BIN` 指定 Chromium 的路径，或安装 Playwright Chromium。验证覆盖主题匹配/拒答、三条快捷问题、用户交互、刷新后的状态、资源审核与撤回，以及 390px 手机布局。在现有样例上的回归通过不代表真实用户准确率。
