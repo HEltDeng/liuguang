@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+.env*
+.venv/
+交付成品/
+文档/赛事模板/
+比赛调研报告.md

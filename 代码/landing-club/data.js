@@ -1,0 +1,16 @@
+const topics = {
+  transit:{name:"城市通勤",samples:["地铁线路图怎么查","乘公交去学校","从机场到宿舍的路线","每天上课怎么通勤","公共交通换乘","从住处到校园坐什么车","搭地铁公交流程","journey planner tube bus commute transport"]},
+  study:{name:"学习空间",samples:["在哪里可以安静自习","图书馆借书和还书","学校阅览室位置","想找写论文的地方","学习空间怎么预约","借阅书籍需要什么","期末复习去哪看书","library study space reading books"]},
+  clubs:{name:"社团交友",samples:["刚来伦敦想认识朋友","参加学生社团的入口","学校有什么兴趣小组","迎新活动怎么找同学","参加协会认识新朋友","怎么结识一起运动的伙伴","社交破冰新生活动","club society societies friends sports"]}
+};
+const sources=[
+{id:"journey",topic:"transit",name:"规划第一段上学路线",org:"Transport for London",info:"输入起点和目的地，查看从住处到校园的公共交通路线。",url:"https://tfl.gov.uk/plan-a-journey/",tag:"路线规划"},
+{id:"tube",topic:"transit",name:"查找伦敦地铁线路图",org:"Transport for London",info:"出门前对照地铁线路和换乘站，给手机留一份官方地图入口。",url:"https://tfl.gov.uk/maps/track/tube",tag:"交通地图"},
+{id:"ucl",topic:"study",name:"找到适合自习的图书馆",org:"UCL Library Services",info:"查看 UCL 的图书馆、学习空间、借阅和访客使用说明。",url:"https://www.ucl.ac.uk/library/using-library",tag:"空间指南"},
+{id:"senate",topic:"study",name:"认识 Senate House Library",org:"University of London",info:"从馆方入口查看馆藏、访问方式和读者服务。",url:"https://www.london.ac.uk/about/services/senate-house-library",tag:"读者服务"},
+{id:"union",topic:"clubs",name:"按兴趣找一个学生社团",org:"Students’ Union UCL",info:"浏览 UCL 学生会的社团目录，挑一个感兴趣的组织了解参与方式。",url:"https://studentsunionucl.org/clubs-societies",tag:"社团目录"}];
+const mentors=[
+{id:"yan",name:"阿言",topic:"transit",bio:"在伦敦坐公共交通上课，熟悉从查线路到实际换乘的步骤。"},
+{id:"mo",name:"小墨",topic:"study",bio:"在伦敦学习时经常使用校园图书馆，愿意交流第一次找自习位的经验。"},
+{id:"lin",name:"林林",topic:"clubs",bio:"有参加学生兴趣社团的经历，愿意聊第一次去线下活动怎么开口。"}];
+const prompts=["第一次坐地铁去学校，怎么查路线？","想找一个安静自习的地方","刚来伦敦，怎么认识有相同兴趣的朋友？"];
