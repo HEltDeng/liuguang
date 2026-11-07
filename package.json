@@ -1,0 +1,20 @@
+{
+  "name": "liuguang",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0 && prettier --check '代码/liuguang/**/*.{js,css,html}' 'scripts/*.{ts,mjs}' '*.json' '*.mjs'",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test scripts/*.test.ts",
+    "check:ui": "node scripts/check-ui.ts",
+    "build": "python3 代码/liuguang/build.py",
+    "test:e2e": "pnpm build && python3 代码/liuguang/tests/check_demo.py && python3 代码/liuguang/tests/check_styleguide.py"
+  },
+  "devDependencies": {
+    "eslint": "9.39.1",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "@types/node": "24.10.1"
+  }
+}
