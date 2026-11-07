@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 
 root=Path(__file__).resolve().parents[3]
 demo=root/'交付成品'/'留光-伦敦站-Demo.html'
-shots=root/'图片素材'/'演示截图'
+shots=root/'test-results'/'offline-demo'
 shots.mkdir(parents=True, exist_ok=True)
 chrome=Path('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
 with sync_playwright() as pw:
