@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 
 root=Path(__file__).resolve().parents[3]
 demo=root/'交付成品'/'留光-伦敦站-Demo.html'
-shots=root/'图片素材'/'演示截图'
+shots=root/'test-results'/'offline-demo'
 shots.mkdir(parents=True, exist_ok=True)
 chrome=Path('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
 with sync_playwright() as pw:
@@ -70,6 +70,27 @@ with sync_playwright() as pw:
     page.locator('[data-prompt="1"]').click()
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
     page.screenshot(path=str(shots/'02-手机匹配.png'),full_page=True)
+    # Restore valid records when an older local cache contains incomplete entries.
+    page.evaluate("""() => {
+        const saved = JSON.parse(localStorage.getItem(key));
+        saved.requests.push({id: "old", mentor: "retired"});
+        saved.links = [
+          null,
+          {id: "old", url: "http://example.org"},
+          {id: 'draft"1', name: "已保存草稿", org: "example.org", info: "演示资料",
+           topic: "study", date: "2026-11-25", status: "pending", url: "https://example.org/notes"}
+        ];
+        localStorage.setItem(key, JSON.stringify(saved));
+    }""")
+    page.reload()
+    page.get_by_role('link',name='资源库',exact=True).click()
+    review = page.get_by_text('核对并发布')
+    assert review.count() == 1 and review.get_attribute('data-review') == 'draft"1'
+    review.click()
+    assert page.locator('#modal a.out').get_attribute('href') == 'https://example.org/notes'
+    page.get_by_text('关闭窗口').click()
+    page.get_by_role('link',name='互助记录',exact=True).click()
+    assert page.get_by_text('已反馈',exact=True).count()==1
     assert not errors,errors
     browser.close()
 print('PASS: 10 classification/rejection cases; 3 suggested questions; onboarding, request, reply, feedback, persistence, contribution, moderation, search, withdrawal and mobile layout.')
