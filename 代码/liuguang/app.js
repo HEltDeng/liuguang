@@ -15,9 +15,51 @@ const $ = (s) => document.querySelector(s),
     );
 const key = "landing-club.demo.v1",
   blank = () => ({ profile: null, links: [], requests: [] });
+const urlOk = (s) => {
+  if (typeof s !== "string") return false;
+  try {
+    let u = new URL(s);
+    return u.protocol === "https:" && !u.username && !u.password;
+  } catch {
+    return false;
+  }
+};
+function restoreState(saved) {
+  const records = (value) =>
+    Array.isArray(value)
+      ? value.filter((item) => item && typeof item.id === "string" && item.id)
+      : [];
+  return {
+    profile:
+      typeof saved?.profile?.nick === "string" &&
+      typeof saved.profile.stage === "string"
+        ? saved.profile
+        : null,
+    links: records(saved?.links).filter(
+      (item) =>
+        ["name", "info", "org", "date", "topic"].every(
+          (field) => typeof item[field] === "string",
+        ) &&
+        (item.tag == null || typeof item.tag === "string") &&
+        Object.hasOwn(topics, item.topic) &&
+        urlOk(item.url) &&
+        ["pending", "published"].includes(item.status),
+    ),
+    requests: records(saved?.requests).filter(
+      (item) =>
+        ["nick", "date", "body"].every(
+          (field) => typeof item[field] === "string",
+        ) &&
+        [item.reply, item.feedback].every(
+          (text) => text == null || typeof text === "string",
+        ) &&
+        mentors.some((mentor) => mentor.id === item.mentor),
+    ),
+  };
+}
 let state = blank();
 try {
-  state = JSON.parse(localStorage.getItem(key)) || blank();
+  state = restoreState(JSON.parse(localStorage.getItem(key)));
 } catch {}
 let query = "",
   filter = "all",
@@ -51,14 +93,6 @@ const all = () => [
   ...sources,
   ...state.links.filter((x) => x.status === "published"),
 ];
-const urlOk = (s) => {
-  try {
-    let u = new URL(s);
-    return u.protocol === "https:" && !u.username && !u.password;
-  } catch {
-    return false;
-  }
-};
 const iconMap =
   '<svg class="map" viewBox="0 0 390 170" role="img" aria-label="伦敦站插画：由三条路线连接的学习、通勤、社团站点"><defs><pattern id="dots" width="15" height="15" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#80a997" opacity=".38"/></pattern></defs><rect width="390" height="170" fill="url(#dots)"/><path d="M-5 140 Q40 91 88 126 T178 115 T266 94 T400 54" fill="none" stroke="#417a72" stroke-width="19"/><g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 93h67l38-38h84l40 40h159" stroke="#dceaab"/><path d="M65 156l60-60h66l52-52h94" stroke="#f5ab79"/><path d="M167 0v34l24 21v70l34 34h90" stroke="#94c3ac"/></g><g fill="#174e48" stroke="#fffbdc" stroke-width="4"><circle cx="107" cy="55" r="6"/><circle cx="191" cy="55" r="8"/><circle cx="191" cy="96" r="8"/><circle cx="243" cy="44" r="6"/><circle cx="312" cy="95" r="6"/></g><g fill="#e4efcd" font-family="monospace" font-size="14px" letter-spacing="2"><text x="82" y="39">STUDY</text><text x="255" y="33">SOCIETY</text><text x="232" y="120">TRANSIT</text><text x="18" y="19">51°30′ N</text></g></svg>';
 const pagehead = (n, title, info) =>
@@ -199,11 +233,11 @@ function library() {
             '</p><div class="btns">' +
             (l.status === "pending"
               ? '<button class="secondary" data-review="' +
-                l.id +
+                esc(l.id) +
                 '">核对并发布</button>'
               : "") +
             '<button class="link" data-remove="' +
-            l.id +
+            esc(l.id) +
             '">撤回</button></div></article>',
         )
         .join("") +
@@ -352,13 +386,13 @@ function inbox() {
             ? '<p class="desc">新生反馈：' + esc(r.feedback) + "</p>"
             : role === "student" && r.reply
               ? '<div class="btns"><button class="secondary" data-feedback="' +
-                r.id +
+                esc(r.id) +
                 '" value="有帮助">有帮助</button><button class="link" data-feedback="' +
-                r.id +
+                esc(r.id) +
                 '" value="未解决">未解决</button></div>'
               : role === "alum" && !r.reply
                 ? '<button class="secondary" data-reply="' +
-                  r.id +
+                  esc(r.id) +
                   '">回复这个问题</button>'
                 : "") +
           "</article>"

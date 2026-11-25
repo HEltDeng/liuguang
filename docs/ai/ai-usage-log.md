@@ -11,3 +11,9 @@
 | 自动验证 | Git/gh、Node、pnpm、Prettier、ESLint、TypeScript、Python、Playwright/Chrome、gitleaks。4 个单元测试，旧版演示回归、两套样张各 3 个宽度。截图与门禁见 PROGRESS 和 PR。 |
 | 证据边界 | 不计产品端标签采纳、真实互动、推荐准确率或 AI 用户成本；模型推理与对照实验在后续里程碑记录。 |
 | 人工复核（姓名、日期、修改） | |
+
+## 2026-11-25 · 本地安全审查
+
+Codex 核对离线演示的浏览器存储与 HTML 输出，修改缓存恢复、属性转义并补充混合有效和过期记录的 Playwright 回归。验证使用 Node、TypeScript、ESLint、Prettier 和本机 Chrome，数据均为合成样本。
+
+人工复核（姓名、日期、修改）：
