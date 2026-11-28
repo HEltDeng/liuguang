@@ -1,0 +1,93 @@
+body.connect {
+  line-height: 1.7;
+}
+body.connect .frame {
+  max-width: 720px;
+}
+body.connect .skip {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 8px;
+  transform: translateY(-150%);
+  z-index: 5;
+}
+body.connect .skip:focus {
+  transform: none;
+}
+body.connect nav {
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+body.connect nav a,
+body.connect nav button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+}
+body.connect .primary,
+body.connect .secondary {
+  min-height: 44px;
+  white-space: normal;
+}
+body.connect .stack {
+  margin-top: 8px;
+}
+body.connect .banner {
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 12px 0;
+}
+body.connect .banner.error {
+  background: #f6e1d4;
+  color: #3d2418;
+  border: 1px solid #c47b52;
+}
+body.connect .banner.info,
+body.connect .note {
+  background: #e7f0dc;
+  color: #163a37;
+}
+body.connect .field.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+body.connect .field.check input {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  margin-top: 4px;
+}
+body.connect .person {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+body.connect footer {
+  flex-wrap: wrap;
+  color: #1f3f38;
+}
+body.connect footer a {
+  font-size: 14px;
+  color: #1f3f38;
+}
+@media (max-width: 420px) {
+  body.connect .head {
+    height: auto;
+    min-height: 58px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  body.connect .primary,
+  body.connect .secondary {
+    width: 100%;
+  }
+}

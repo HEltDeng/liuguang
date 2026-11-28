@@ -26,6 +26,15 @@ flowchart LR
 
 服务端拟由邀请码入驻、社区问答、经同意的经验卡片、混合检索与可核验的重排理由衔接；各环节分别记录模型输出、授权与反馈。参见[原型流程](文档/工作流与架构.md)和[技术决定](docs/DECISIONS.md)。
 
+## 当前交付：M1 双人连接
+
+邀请码注册、画像、同校同专业、问答、邀请和消息走服务端。权限不放在浏览器存储里。没有 Docker 时用 PGlite 执行 Postgres 迁移。模型未配置时用规则，并标明不是模型输出。步骤、两个合成账号和测试命令见[运行说明](docs/runbooks/m1-connection.md)。契约见 [contracts/http.md](contracts/http.md)。
+
+```sh
+pnpm start
+pnpm seed
+```
+
 ## 命题要求对照
 
 | 要求 | 当前证据 | 正式验收 |

@@ -31,6 +31,9 @@ jobs:
       - name: Check style samples on pull requests
         if: github.event_name == 'pull_request'
         run: python 代码/liuguang/tests/check_styleguide.py
+      - name: Run two-account connection journey on pull requests
+        if: github.event_name == 'pull_request'
+        run: python 代码/liuguang/tests/check_connection.py
       - name: Run all browser journeys on main
         if: github.ref == 'refs/heads/main'
         run: pnpm test:e2e
