@@ -85,11 +85,14 @@ with sync_playwright() as pw:
     page.reload()
     page.get_by_role('link',name='资源库',exact=True).click()
     review = page.get_by_text('核对并发布')
+    # The hash update can land after click() returns; wait for the restored draft.
+    review.wait_for()
     assert review.count() == 1 and review.get_attribute('data-review') == 'draft"1'
     review.click()
     assert page.locator('#modal a.out').get_attribute('href') == 'https://example.org/notes'
     page.get_by_text('关闭窗口').click()
     page.get_by_role('link',name='互助记录',exact=True).click()
+    page.get_by_text('已反馈',exact=True).wait_for()
     assert page.get_by_text('已反馈',exact=True).count()==1
     assert not errors,errors
     browser.close()

@@ -137,6 +137,10 @@ function person(m) {
     '">向这位校友提问 →</button></article>'
   );
 }
+function connectionEntry() {
+  if (location.protocol === "file:") return "";
+  return '<p class="note">本页的名片、问答和审核只留在这台浏览器。两个账号的邀请、接受和消息请走<a href="connect/">服务端双人连接</a>。</p>';
+}
 function discover() {
   app.innerHTML =
     '<section class="hero"><div><p class="over">FIELD GUIDE　/　LONDON 01</p><h1>连接同行的人，<br>照亮自己的路。</h1><p>在伦敦新生体验站提问，找到相关资料与校友。</p></div>' +
@@ -150,7 +154,9 @@ function discover() {
           '<button class="chip" data-prompt="' + i + '">' + s + "</button>",
       )
       .join("") +
-    '</div></section><section id="results" class="res" tabindex="-1" aria-live="polite"></section><div class="row section"><h2>新生资源精选</h2><a class="link" href="#library">全部资源 →</a></div><div class="grid">' +
+    "</div></section>" +
+    connectionEntry() +
+    '<section id="results" class="res" tabindex="-1" aria-live="polite"></section><div class="row section"><h2>新生资源精选</h2><a class="link" href="#library">全部资源 →</a></div><div class="grid">' +
     [sources[0], sources[2], sources[4]].map(card).join("") +
     "</div>";
   $("#search").onsubmit = (e) => {

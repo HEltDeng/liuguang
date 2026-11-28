@@ -17,3 +17,15 @@
 Codex 核对离线演示的浏览器存储与 HTML 输出，修改缓存恢复、属性转义并补充混合有效和过期记录的 Playwright 回归。验证使用 Node、TypeScript、ESLint、Prettier 和本机 Chrome，数据均为合成样本。
 
 人工复核（姓名、日期、修改）：
+
+## 2026-11-28 · M1 学生连接
+
+| 项 | 记录 |
+|---|---|
+| 配置与实际调用 | Cursor 云代理中的 Grok 4.7。产品端没有配置模型，也没有调用付费推理接口。不确定底层路由时只记录这个名字。 |
+| 输入与工作流 | 从 `82862004d11590987ea39f528a06216d4d2689e9` 读仓库约定、M0 页面和已有决定。用 Context7 核对 Drizzle ORM 0.45 与 PGlite 0.6 的连接写法。没有使用真实用户资料。 |
+| 产品与研究设计 | 契约、迁移、双人连接页面、规则退化说明，以及经验卡片和匹配的占位设计。没有实施访谈，也没有归纳真实反馈。 |
+| 开发产物 | Postgres 迁移与 Drizzle 模式、zod 校验、服务端权限、PGlite 本地路径、连接页面、权限测试和运行说明。同校筛选与画像整理在未配置模型时标记为规则输出。 |
+| 自动验证 | Node、pnpm、TypeScript、ESLint、Prettier、Python、Playwright、本机 Chrome。`pnpm lint`、`pnpm typecheck`、`pnpm test`、`pnpm check:ui`、`pnpm build`、`pnpm seed` 和 `CHROME_BIN=/usr/bin/google-chrome pnpm test:e2e` 均通过。截图是合成页面。 |
+| 证据边界 | 不计真实连接、推荐准确率或模型成本。触发器和接口断言覆盖拒绝后不能接受、重复接受、未接受不能发消息、私人字段不可见，以及同校同专业筛选。 |
+| 人工复核（姓名、日期、修改） | |
