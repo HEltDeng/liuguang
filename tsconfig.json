@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "lib": ["ES2023", "DOM"]
   },
-  "include": ["scripts/**/*.ts", "src/**/*.ts", "src/**/*.tsx"]
+  "include": ["scripts/**/*.ts", "src/**/*.ts", "contracts/**/*.ts"]
 }
